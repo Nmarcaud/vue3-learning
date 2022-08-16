@@ -1,18 +1,30 @@
 <template>
-  <div class="card" @click="userClick('card')">
-    <h1>Ma Card</h1>
-    <button class="button" @click.stop="userClick('btn')">Mon bouton</button>
+  <div class="card">
+    <h1>Bonjour {{ state.user.name }}</h1>
+    <p>Count : {{ state.count }}</p>
+    <button class="button" @click="userClick()">Incrémenter</button>
   </div>
 </template>
 
 <script setup lang="ts">
+  import { reactive } from 'vue';
 
-  function userClick(from: string) {
-    console.log('click from', from);
+  const state = reactive({
+    user: {
+      name: 'Nicolas',
+      age:35
+    },
+    count: 0
+  })
+
+  setTimeout(()=> {
+    state.user.name = "Pauline";
+  }, 2000)
+
+
+  function userClick() {
+    state.count++;
   }
-
-  
-
 
 </script>
 
